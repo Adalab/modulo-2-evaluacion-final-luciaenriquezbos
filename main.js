@@ -3,9 +3,11 @@
 const form = document.querySelector(".js-form");
 const submitButton = document.querySelector(".js-submit");
 const searchInput = document.querySelector(".js-search");
-let showList = document.querySelector(".js-ul_list");
+const showList = document.querySelector(".js-ul_list");
+const favoritesList = document.querySelector(".js-ul_list_favorites");
 
 form.addEventListener("submit", handleSubmit);
+
 function handleSubmit(event) {
   showList.innerHTML = "";
   fetch("http://api.tvmaze.com/search/shows?q=" + searchInput.value)
@@ -13,32 +15,31 @@ function handleSubmit(event) {
     .then((results) => {
       for (const result of results) {
         let show = result.show;
-        const newItem = document.createElement("li");
+        const showItem = document.createElement("li");
         let title = show.name;
         let image;
-        if (show.image !== undefined && show.image.medium) {
+        if (show.image && show.image.medium) {
           image = show.image.medium;
         } else {
           image =
             "https://via.placeholder.com/210x295/ffffff/666666/?text=" + title;
         }
-        newItem.innerHTML += `Titulo: ${title} 
+        showItem.innerHTML += `Titulo: ${title} 
         <img src=${image} alt="image">`;
-        showList.appendChild(newItem);
+        showList.appendChild(showItem);
+        showItem.addEventListener("click", handleShowClick);
       }
     });
-
-  event.preventDefault();
 }
 
-function handleSearchResult() {
-  //coger el valor del search (actual)
-  const searchText = searchInput.value;
+function handleShowClick(event) {
+  let clickedShow = event.currentTarget;
+  console.log(clickedShow);
 
-  //(render)
+  //cambiamos los estilos
+  clickedShow.style = "background-color: red";
+
+  //almacenar la serie en localStorage
+
+  //llamar a la funcion que pinta los favoritos en su lista
 }
-//submitButton.addEventListener("click", handleSearchResult);
-
-// favoritos;
-
-// const favoritesContent = document.querySelector(".js-ul_list--favorites");
