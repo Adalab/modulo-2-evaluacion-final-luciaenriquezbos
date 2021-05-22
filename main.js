@@ -3,39 +3,42 @@
 const form = document.querySelector(".js-form");
 const submitButton = document.querySelector(".js-submit");
 const searchInput = document.querySelector(".js-search");
-const showList = document.querySelector(".js-ul_list");
-let allShows = [];
+let showList = document.querySelector(".js-ul_list");
 
-//ole
-
-fetch("http://api.tvmaze.com/shows?q=+")
-  .then((response) => response.json())
-  .then((shows) => {
-    allShows = shows;
-  });
-
-// function renderShows(shows) {
-//   filteredShows.innerHTML = "";
-// }
-
-//boton que dispar la busqueda del formulario
+form.addEventListener("submit", handleSubmit);
 function handleSubmit(event) {
+  showList.innerHTML = "";
+  fetch("http://api.tvmaze.com/search/shows?q=" + searchInput.value)
+    .then((response) => response.json())
+    .then((results) => {
+      for (const result of results) {
+        let show = result.show;
+        const newItem = document.createElement("li");
+        let title = show.name;
+        let image;
+        if (show.image !== undefined && show.image.medium) {
+          image = show.image.medium;
+        } else {
+          image =
+            "https://via.placeholder.com/210x295/ffffff/666666/?text=" + title;
+        }
+        newItem.innerHTML += `Titulo: ${title} 
+        <img src=${image} alt="image">`;
+        showList.appendChild(newItem);
+      }
+    });
+
   event.preventDefault();
 }
-form.addEventListener("submit", handleSubmit);
 
 function handleSearchResult() {
   //coger el valor del search (actual)
   const searchText = searchInput.value;
 
-  //filtrar los datos
-  filteredShows = allShows.filter((show) => show.name.includes(searchText));
-
   //(render)
-  for (const show of filteredShows) {
-    const newItem = document.createElement("li");
-    newItem.innerHTML = `Titulo: ${show.name} <img src=${show.image.medium} alt="image">`;
-    showList.appendChild(newItem);
-  }
 }
-submitButton.addEventListener("click", handleSearchResult);
+//submitButton.addEventListener("click", handleSearchResult);
+
+// favoritos;
+
+// const favoritesContent = document.querySelector(".js-ul_list--favorites");
