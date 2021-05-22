@@ -34,12 +34,13 @@ function handleSubmit(event) {
 
 function handleShowClick(event) {
   let clickedShow = event.currentTarget;
-  console.log(clickedShow);
-
-  //cambiamos los estilos
-  clickedShow.style = "background-color: red";
-
-  //almacenar la serie en localStorage
-
-  //llamar a la funcion que pinta los favoritos en su lista
+  clickedShow.classList.toggle("favorite");
 }
+//cambiamos los estilos
+//clickedShow.style = "background-color: red";
+
+//
+
+//   //almacenar la serie en localStorage
+
+//   //llamar a la funcion que pinta los favoritos en su lista
