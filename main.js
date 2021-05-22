@@ -3,22 +3,20 @@
 const form = document.querySelector(".js-form");
 const submitButton = document.querySelector(".js-submit");
 const searchInput = document.querySelector(".js-search");
+const showList = document.querySelector(".js-ul_list");
 let allShows = [];
+
 //ole
 
 fetch("http://api.tvmaze.com/shows?q=+")
   .then((response) => response.json())
   .then((shows) => {
     allShows = shows;
-
-    const showList = document.querySelector(".js-ul_list");
-
-    for (const show of shows) {
-      const newItem = document.createElement("li");
-      newItem.innerHTML = `Titulo: ${show.name} <img src=${show.image.medium} alt="image">`;
-      showList.appendChild(newItem);
-    }
   });
+
+// function renderShows(shows) {
+//   filteredShows.innerHTML = "";
+// }
 
 //boton que dispar la busqueda del formulario
 function handleSubmit(event) {
@@ -32,8 +30,12 @@ function handleSearchResult() {
 
   //filtrar los datos
   filteredShows = allShows.filter((show) => show.name.includes(searchText));
-  console.log(filteredShows);
 
   //(render)
+  for (const show of filteredShows) {
+    const newItem = document.createElement("li");
+    newItem.innerHTML = `Titulo: ${show.name} <img src=${show.image.medium} alt="image">`;
+    showList.appendChild(newItem);
+  }
 }
 submitButton.addEventListener("click", handleSearchResult);
