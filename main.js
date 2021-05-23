@@ -5,6 +5,7 @@ const submitButton = document.querySelector(".js-submit");
 const searchInput = document.querySelector(".js-search");
 const showList = document.querySelector(".js-ul_list");
 const favoritesList = document.querySelector(".js-ul_list_favorites");
+const showId = document.querySelector(".idShow");
 
 form.addEventListener("submit", handleSubmit);
 
@@ -25,8 +26,8 @@ function handleSubmit(event) {
           image =
             "https://via.placeholder.com/210x295/ffffff/666666/?text=" + title;
         }
-        showItem.innerHTML += `Titulo: ${title} 
-        <img src=${image} alt="image"> <id: ${id}>`;
+        showItem.innerHTML += `<span class="title">Titulo: ${title}</span>
+        <img class="img" src=${image} alt="image"> <input class="idShow" type="hidden" value=${id}>`;
         showList.appendChild(showItem);
         showItem.addEventListener("click", handleShowClick);
       }
@@ -37,7 +38,18 @@ function handleShowClick(event) {
   let clickedShow = event.currentTarget;
   //cambiamos los estilos
   clickedShow.classList.toggle("favorite");
-  console.log(clickedShow);
+
+  // const showId = clickedShow.querySelector(".idShow");
+  // const showName = clickedShow.querySelector(".title");
+  // const showImg = clickedShow.querySelector(".img");
+
+  // const ShowElementFavorite = [showId.value, showName.innerHTML, showImg.src];
+
+  // localStorage.setItem("ShowElementFavorite",JSON.stringify(ShowElementFavorie);
+
+  // if (ShowElementFavorite !== undefined) {
+  //   localStorage.push();
+  // }
 }
 
 //almacenar la serie en localStorage
