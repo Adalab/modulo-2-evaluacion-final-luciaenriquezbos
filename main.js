@@ -6,6 +6,7 @@ const searchInput = document.querySelector(".js-search");
 const showList = document.querySelector(".js-ul_list");
 const favoritesList = document.querySelector(".js-ul_list_favorites");
 const showId = document.querySelector(".idShow");
+let favorites = [];
 
 form.addEventListener("submit", handleSubmit);
 
@@ -39,7 +40,18 @@ function handleShowClick(event) {
   //cambiamos los estilos
   clickedShow.classList.toggle("favorite");
 
-  // const showId = clickedShow.querySelector(".idShow");
+  const showId = clickedShow.querySelector(".idShow");
+  console.log(showId);
+
+  const isPresent = favorites.find((favoriteId) => favoriteId === showId);
+
+  if (isPresent === undefined) {
+    favorites.push(showId);
+  } else {
+    favorites = favorites.filter((favoriteId) => favoriteId !== showId);
+  }
+  console.log(favorites);
+
   // const showName = clickedShow.querySelector(".title");
   // const showImg = clickedShow.querySelector(".img");
 
