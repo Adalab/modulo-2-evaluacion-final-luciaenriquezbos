@@ -17,6 +17,7 @@ function handleSubmit(event) {
         let show = result.show;
         const showItem = document.createElement("li");
         let title = show.name;
+        let id = show.id;
         let image;
         if (show.image && show.image.medium) {
           image = show.image.medium;
@@ -25,7 +26,7 @@ function handleSubmit(event) {
             "https://via.placeholder.com/210x295/ffffff/666666/?text=" + title;
         }
         showItem.innerHTML += `Titulo: ${title} 
-        <img src=${image} alt="image">`;
+        <img src=${image} alt="image"> <id: ${id}>`;
         showList.appendChild(showItem);
         showItem.addEventListener("click", handleShowClick);
       }
@@ -34,13 +35,11 @@ function handleSubmit(event) {
 
 function handleShowClick(event) {
   let clickedShow = event.currentTarget;
+  //cambiamos los estilos
   clickedShow.classList.toggle("favorite");
+  console.log(clickedShow);
 }
-//cambiamos los estilos
-//clickedShow.style = "background-color: red";
 
-//
-
-//   //almacenar la serie en localStorage
+//almacenar la serie en localStorage
 
 //   //llamar a la funcion que pinta los favoritos en su lista
