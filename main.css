@@ -3,15 +3,26 @@
   list-style: none;
   text-decoration: none;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 18px;
 }
 
-.title {
+.title1 {
   color: violet;
   font-size: 25px;
 }
 
+.ul_favorites {
+  background-color: crimson;
+  width: 20%;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: right;
+  align-items: right;
+  font-size: 15px;
+}
+
 .ul_list {
+  background-color: cyan;
   width: 100vw;
   display: flex;
   flex-direction: column;

@@ -23,7 +23,7 @@ function renderFavorites() {
       let image = favorite.img;
       let id = favorite.id;
 
-      favoriteItem.innerHTML += `<span class="title">Titulo: ${title}</span>
+      favoriteItem.innerHTML += `<span class="title">${title}</span>
       <img class="img" src=${image} alt="image"><input class="idShow" type="hidden" value=${id}>`;
       favoritesList.appendChild(favoriteItem);
     }
