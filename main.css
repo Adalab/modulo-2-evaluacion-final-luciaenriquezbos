@@ -11,7 +11,6 @@
 }
 
 .ul_favorites {
-  background-color: crimson;
   width: 20%;
   display: flex;
   position: absolute;
@@ -21,18 +20,24 @@
   font-size: 15px;
 }
 .img_favorites {
-  width: 60px;
+  width: 80px;
 }
 
 .ul_list {
-  background-color: cyan;
-  width: 100vw;
+  width: 80%;
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 20px;
+}
+
+.ul_list-title {
+  color: cyan;
 }
 
 .favorite {
-  background-color: rgb(231, 18, 178);
+  background-color: rgb(192, 192, 192);
+  padding: 0;
 }
