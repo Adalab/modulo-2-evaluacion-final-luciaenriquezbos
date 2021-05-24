@@ -49,6 +49,22 @@ function handleSubmit(event) {
             "https://via.placeholder.com/210x295/ffffff/666666/?text=" + title;
         }
 
+        //pintar favoritos en los resultados de búsqueda
+        // comprobamos si el nuevo Item está en el array
+        let favorites = [];
+        if (localStorage.getItem("favorites") !== null) {
+          favorites = JSON.parse(localStorage.getItem("favorites"));
+
+          const exists = favorites.find(
+            (favorite) => parseInt(favorite.id) === id
+          );
+
+          if (exists !== undefined) {
+            showItem.classList.add("favorite");
+          }
+        }
+
+        //pintar los resultados de búsqueda tal cual me los presenta la API
         showItem.innerHTML += `<span class="title">Titulo: ${title}</span>
           <img class="img" src=${image} alt="image"> <input class="idShow" type="hidden" value=${id}>`;
         showList.appendChild(showItem);
