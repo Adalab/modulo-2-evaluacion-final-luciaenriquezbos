@@ -27,8 +27,9 @@ function handleSubmit(event) {
           image =
             "https://via.placeholder.com/210x295/ffffff/666666/?text=" + title;
         }
+
         showItem.innerHTML += `<span class="title">Titulo: ${title}</span>
-        <img class="img" src=${image} alt="image"> <input class="idShow" type="hidden" value=${id}>`;
+          <img class="img" src=${image} alt="image"> <input class="idShow" type="hidden" value=${id}>`;
         showList.appendChild(showItem);
         showItem.addEventListener("click", handleShowClick);
       }
@@ -54,6 +55,9 @@ function handleShowClick(event) {
       (favoriteId) => favoriteId !== favoriteShowsId
     );
   }
+  console.log(favorites);
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
 
   // const showName = clickedShow.querySelector(".title");
   // const showImg = clickedShow.querySelector(".img");
