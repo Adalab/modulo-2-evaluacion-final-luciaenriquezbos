@@ -41,21 +41,24 @@ function handleShowClick(event) {
   clickedShow.classList.toggle("favorite");
 
   const showId = clickedShow.querySelector(".idShow");
-  console.log(showId);
+  const favoriteShowsId = showId.value;
 
-  const isPresent = favorites.find((favoriteId) => favoriteId === showId);
+  const isPresent = favorites.find(
+    (favoriteId) => favoriteId === favoriteShowsId
+  );
 
   if (isPresent === undefined) {
-    favorites.push(showId);
+    favorites.push(favoriteShowsId);
   } else {
-    favorites = favorites.filter((favoriteId) => favoriteId !== showId);
+    favorites = favorites.filter(
+      (favoriteId) => favoriteId !== favoriteShowsId
+    );
   }
-  console.log(favorites);
 
   // const showName = clickedShow.querySelector(".title");
   // const showImg = clickedShow.querySelector(".img");
 
-  // const ShowElementFavorite = [showId.value, showName.innerHTML, showImg.src];
+  //const ShowElementFavorite = [showId.value, showName.innerHTML, showImg.src];
 
   // localStorage.setItem("ShowElementFavorite",JSON.stringify(ShowElementFavorie);
 
