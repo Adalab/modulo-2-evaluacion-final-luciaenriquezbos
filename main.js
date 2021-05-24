@@ -24,7 +24,7 @@ function renderFavorites() {
       let id = favorite.id;
 
       favoriteItem.innerHTML += `<span class="title">${title}</span>
-      <img class="img" src=${image} alt="image"><input class="idShow" type="hidden" value=${id}>`;
+      <img class="img_favorites" src=${image} alt="image"><input class="idShow" type="hidden" value=${id}>`;
       favoritesList.appendChild(favoriteItem);
     }
   }
@@ -93,7 +93,5 @@ function handleShowClick(event) {
   // y por último guardamos el array actualizado en localStorage
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
+  renderFavorites();
 }
-
-form.addEventListener("submit", handleSubmit);
-renderFavorites();

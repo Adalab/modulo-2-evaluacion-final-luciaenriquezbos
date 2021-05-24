@@ -16,9 +16,12 @@
   display: flex;
   position: absolute;
   flex-direction: column;
-  justify-content: right;
-  align-items: right;
+  justify-content: center;
+  align-items: center;
   font-size: 15px;
+}
+.img_favorites {
+  width: 60px;
 }
 
 .ul_list {
