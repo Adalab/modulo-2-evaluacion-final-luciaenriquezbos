@@ -6,11 +6,34 @@ const showList = document.querySelector(".js-ul_list");
 const favoritesList = document.querySelector(".js-ul_list_favorites");
 
 form.addEventListener("submit", handleSubmit);
+renderFavorites();
+
+function renderFavorites() {
+  favoritesList.innerHTML = "";
+  //declarar el array
+  let favorites = [];
+  //comprobamos que localStage hay algo
+  if (localStorage.getItem("favorites") !== null) {
+    favorites = JSON.parse(localStorage.getItem("favorites"));
+
+    //si hay algo pintamos un li
+    for (const favorite of favorites) {
+      const favoriteItem = document.createElement("li");
+      let title = favorite.title;
+      let image = favorite.img;
+      let id = favorite.id;
+
+      favoriteItem.innerHTML += `<span class="title">Titulo: ${title}</span>
+      <img class="img" src=${image} alt="image"><input class="idShow" type="hidden" value=${id}>`;
+      favoritesList.appendChild(favoriteItem);
+    }
+  }
+}
 
 function handleSubmit(event) {
   event.preventDefault();
   showList.innerHTML = "";
-  fetch("http://api.tvmaze.com/search/shows?q=" + searchInput.value)
+  fetch("//api.tvmaze.com/search/shows?q=" + searchInput.value)
     .then((response) => response.json())
     .then((results) => {
       for (const result of results) {
@@ -71,3 +94,6 @@ function handleShowClick(event) {
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
+
+form.addEventListener("submit", handleSubmit);
+renderFavorites();
