@@ -1,16 +1,14 @@
 "user strict";
 
 const form = document.querySelector(".js-form");
-const submitButton = document.querySelector(".js-submit");
 const searchInput = document.querySelector(".js-search");
 const showList = document.querySelector(".js-ul_list");
 const favoritesList = document.querySelector(".js-ul_list_favorites");
-const showId = document.querySelector(".idShow");
-let favorites = [];
 
 form.addEventListener("submit", handleSubmit);
 
 function handleSubmit(event) {
+  event.preventDefault();
   showList.innerHTML = "";
   fetch("http://api.tvmaze.com/search/shows?q=" + searchInput.value)
     .then((response) => response.json())
@@ -41,36 +39,35 @@ function handleShowClick(event) {
   //cambiamos los estilos
   clickedShow.classList.toggle("favorite");
 
-  const showId = clickedShow.querySelector(".idShow");
-  const favoriteShowsId = showId.value;
+  //declarar el array
+  let favorites = [];
 
-  const isPresent = favorites.find(
-    (favoriteId) => favoriteId === favoriteShowsId
-  );
-
-  if (isPresent === undefined) {
-    favorites.push(favoriteShowsId);
-  } else {
-    favorites = favorites.filter(
-      (favoriteId) => favoriteId !== favoriteShowsId
-    );
+  //rellenar el array con lo que tengamos almacenado en localStorage (si tenemos algo)
+  if (localStorage.getItem("favorites") !== null) {
+    favorites = JSON.parse(localStorage.getItem("favorites"));
   }
-  console.log(favorites);
+
+  // crear nuevo Item /objeto para añadirlo al array
+  const favoriteTitle = clickedShow.querySelector(".title").innerHTML;
+  const favoriteImg = clickedShow.querySelector(".img").src;
+  const favoriteId = clickedShow.querySelector(".idShow").value;
+
+  const favoriteShow = {
+    title: favoriteTitle,
+    img: favoriteImg,
+    id: favoriteId,
+  };
+
+  //comprobmos si el nuevo Item exixte en el array y si exite lo eliminamos y si no exixte lo añadimos
+  const exists = favorites.find((favorite) => favorite.id === favoriteShow.id);
+
+  if (exists === undefined) {
+    favorites.push(favoriteShow);
+  } else {
+    favorites = favorites.filter((favorite) => favorite.id !== favoriteShow.id);
+  }
+
+  // y por último guardamos el array actualizado en localStorage
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
-
-  // const showName = clickedShow.querySelector(".title");
-  // const showImg = clickedShow.querySelector(".img");
-
-  //const ShowElementFavorite = [showId.value, showName.innerHTML, showImg.src];
-
-  // localStorage.setItem("ShowElementFavorite",JSON.stringify(ShowElementFavorie);
-
-  // if (ShowElementFavorite !== undefined) {
-  //   localStorage.push();
-  // }
 }
-
-//almacenar la serie en localStorage
-
-//   //llamar a la funcion que pinta los favoritos en su lista
