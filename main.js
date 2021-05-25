@@ -4,6 +4,7 @@ const form = document.querySelector(".js-form");
 const searchInput = document.querySelector(".js-search");
 const showList = document.querySelector(".js-ul_list");
 const favoritesList = document.querySelector(".js-ul_list_favorites");
+const buttonRemoveFavorite = document.querySelector(".js-btn");
 
 form.addEventListener("submit", handleSubmit);
 renderFavorites();
@@ -24,7 +25,8 @@ function renderFavorites() {
       let id = favorite.id;
 
       favoriteItem.innerHTML += `<span class="title">${title}</span>
-      <img class="img_favorites" src=${image} alt="image"><input class="idShow" type="hidden" value=${id}>`;
+      <img class="img_favorites" src=${image} alt="image"><input class="idShow" type="hidden" value=${id}>
+      <button type="button" class="btn js-btn">x</button>`;
       favoritesList.appendChild(favoriteItem);
     }
   }
@@ -97,7 +99,7 @@ function handleShowClick(event) {
     id: favoriteId,
   };
 
-  //comprobmos si el nuevo Item exixte en el array y si exite lo eliminamos y si no exixte lo añadimos
+  //comprobmos si el nuevo Item existe en el array y si existe lo eliminamos y si no existe lo añadimos
   const exists = favorites.find((favorite) => favorite.id === favoriteShow.id);
 
   if (exists === undefined) {

@@ -34,11 +34,12 @@
 
 .ul_list {
   width: 200px;
+  height: 100vh;
   transform: translateX(150px);
   display: flex;
   position: absolute;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   font-size: 20px;
   padding-left: 200px;
