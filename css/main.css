@@ -39,7 +39,6 @@
   display: flex;
   position: absolute;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   font-size: 20px;
   padding-left: 200px;
@@ -54,4 +53,8 @@
 .favorite {
   background-color: rgb(192, 192, 192);
   padding: 0;
+}
+
+.btn {
+  margin-left: 20px;
 }
